@@ -1,7 +1,12 @@
 package com.discord.boot.comandos;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+
 public class HelloUser {
-    private static String comando  = "OC";
+
+    private  String comando  = "OC";
+
 
 
     public HelloUser(String comando) {
