@@ -1,5 +1,6 @@
 package com.discord.boot.service;
 
+import com.discord.boot.comandos.CommandosGenericos;
 import com.discord.boot.listeners.EventListner;
 import com.discord.boot.listeners.MessageListener;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -14,7 +15,12 @@ public class MessageCreateService extends MessageListener implements EventListne
     }
 
     @Override
-    public Mono<Void> execute(final MessageCreateEvent event) {
-        return processMessage(event.getMessage());
+    public Mono<Void> execute(final MessageCreateEvent event){
+            if(event.getMessage().getContent().equals(CommandosGenericos.hello)){
+             return processMessage(event.getMessage());
+            }
+            return Mono.empty();
+
+
     }
 }
