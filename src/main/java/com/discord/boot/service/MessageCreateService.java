@@ -16,8 +16,13 @@ public class MessageCreateService extends MessageListener implements EventListne
 
     @Override
     public Mono<Void> execute(final MessageCreateEvent event){
-            if(event.getMessage().getContent().equals(CommandosGenericos.hello)){
-             return processMessage(event.getMessage());
+            String commnadEvent  = event.getMessage().getContent();
+
+            if(commnadEvent.equals(CommandosGenericos.hello)){
+             return processMessageOC(event.getMessage());
+            }
+            if(commnadEvent.equals(CommandosGenericos.bolosnaro)){
+                return processMessageBolsonaro(event.getMessage());
             }
             return Mono.empty();
 

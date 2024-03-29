@@ -4,7 +4,17 @@ import reactor.core.publisher.Mono;
 
 public abstract  class MessageListener {
     private String author = "UNKNOWN";
-    public Mono<Void> processMessage(final Message eventMessage){
+    public Mono<Void> processMessageOC(final Message eventMessage){
+        return montarMensagem(eventMessage,String.format("alo '%s'",author));
+
+    }
+    public Mono<Void> processMessageBolsonaro(final Message eventMessage){
+        return montarMensagem(eventMessage,"hello Bolsonaro");
+
+    }
+
+
+    private Mono<Void> montarMensagem(Message eventMessage,String mesagem){
         return Mono.just(eventMessage).filter(message -> {
             final Boolean isNotBot = message.getAuthor()
                     .map(user -> !user.isBot())
@@ -15,7 +25,8 @@ public abstract  class MessageListener {
             }
             return isNotBot;
 
-        }).flatMap(Message::getChannel).flatMap(channel -> channel.createMessage(String.format("alo '%s'",author))).then();
+        }).flatMap(Message::getChannel).flatMap(channel -> channel.createMessage(String.format(mesagem))).then();
+
 
     }
 }
