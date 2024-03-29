@@ -15,7 +15,7 @@ public abstract  class MessageListener {
             }
             return isNotBot;
 
-        }).flatMap(Message::getChannel).flatMap(channel -> channel.createMessage(String.format("Hello '%s'",author))).then();
+        }).flatMap(Message::getChannel).flatMap(channel -> channel.createMessage(String.format("alo '%s'",author))).then();
 
     }
 }
