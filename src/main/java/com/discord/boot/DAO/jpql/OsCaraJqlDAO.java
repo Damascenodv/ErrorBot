@@ -32,7 +32,7 @@ public class OsCaraJqlDAO extends BaseRepositorioJPQl implements RepositorioJpql
 
     @Override
     @Transactional
-    public OsCara update(Integer codigo, OsCara obj) {
+    public OsCara update(OsCara obj) {
         return null;
     }
 

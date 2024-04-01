@@ -12,18 +12,18 @@ public abstract  class MessageListener {
     private String author = "UNKNOWN";
     private  RepositorioJpql<OsCara> repositorio = new OsCaraSqlDAO(DiscordBotConfiguration.dataSource());
     public Mono<Void> processMessageOC(final Message eventMessage){
-
         return montarMensagem(eventMessage,String.format("alo '%s'",author));
-
     }
     public Mono<Void> processMessageBolsonaro(final Message eventMessage){
         return montarMensagem(eventMessage,"hello Bolsonaro");
-
     }
-
     public Mono<Void> processCadastroUsuario(final Message eventMessage){
         return cadastraPessoa(eventMessage);
-
+    }
+    public Mono<Void> processAtualizaUsuario(final Message eventMessage){
+        OsCara osCara = new OsCara(eventMessage);
+        osCara.nomeReal = "joão Damasceno";
+        return atualizarPessoa(eventMessage,osCara);
     }
 
 
@@ -68,6 +68,27 @@ public abstract  class MessageListener {
             return isNotBot;
 
         }).flatMap(Message::getChannel).flatMap(channel -> channel.createMessage(String.format(" '%s' cadastrado com sucesso",author))).then();
+
+
+    }
+    private Mono<Void> atualizarPessoa(Message eventMessage,OsCara osCara){
+        return Mono.just(eventMessage).filter(message -> {
+            final Boolean isNotBot = message.getAuthor()
+                    .map(user -> !user.isBot())
+                    .orElse(false);
+
+            if(isNotBot){
+
+                message.getAuthor().ifPresent(user ->author = user.getUsername());
+                try {
+                    repositorio.update(osCara);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return isNotBot;
+
+        }).flatMap(Message::getChannel).flatMap(channel -> channel.createMessage(String.format(" '%s' Atualizado com sucesso",author))).then();
 
 
     }

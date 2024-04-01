@@ -9,7 +9,7 @@ public interface RepositorioJpql<T> {
 
     public T insert(T obj) throws Exception;
 
-    public T update (Integer codigo, T obj);
+    public T update (T obj);
 
     public void delete (T obj);
 }

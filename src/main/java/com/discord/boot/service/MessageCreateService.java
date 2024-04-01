@@ -1,6 +1,7 @@
 package com.discord.boot.service;
 
 import com.discord.boot.comandos.CommandosGenericos;
+import com.discord.boot.entity.OsCara;
 import com.discord.boot.listeners.EventListner;
 import com.discord.boot.listeners.MessageListener;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -26,6 +27,9 @@ public class MessageCreateService extends MessageListener implements EventListne
             }
             if(commnadEvent.equals(CommandosGenericos.cadastroUsuario)){
                 return processCadastroUsuario(event.getMessage());
+            }if (commnadEvent.equals(CommandosGenericos.atualizaUsuario)){
+
+                return processAtualizaUsuario(event.getMessage());
             }
             return Mono.empty();
 
