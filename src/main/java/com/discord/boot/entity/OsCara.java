@@ -12,6 +12,7 @@ public class OsCara {
         message.getAuthor().ifPresent(user ->this.username = user.getUsername());
         message.getAuthor().ifPresent(user ->this.userCode = user.getId().toString());
         message.getAuthor().ifPresent(user ->this.userTag = user.getTag());
+
     }
     @Id
     @Column(name = "oc_codigo")
@@ -19,16 +20,16 @@ public class OsCara {
     private Integer ocCodigo;
 
     @Column(name = "oc_username", nullable = false)
-    private String username;
+    public String username;
 
-    @Column(name = "oc_userCode", nullable = false)
-    private String userCode;
+    @Column(name = "oc_userCode", nullable = true)
+    public String userCode;
 
     @Column(name = "oc_nome_real", nullable = true)
     public String nomeReal;
 
     @Column(name = "oc_user_tag", nullable = false)
-    private String userTag;
+    public String userTag;
 
     @ManyToMany(mappedBy = "osCara")
     public List<Highlights> highlights;

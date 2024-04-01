@@ -19,10 +19,13 @@ public class MessageCreateService extends MessageListener implements EventListne
             String commnadEvent  = event.getMessage().getContent();
 
             if(commnadEvent.equals(CommandosGenericos.hello)){
-             return processMessageOC(event.getMessage());
+                return processMessageOC(event.getMessage());
             }
             if(commnadEvent.equals(CommandosGenericos.bolosnaro)){
                 return processMessageBolsonaro(event.getMessage());
+            }
+            if(commnadEvent.equals(CommandosGenericos.cadastroUsuario)){
+                return processCadastroUsuario(event.getMessage());
             }
             return Mono.empty();
 

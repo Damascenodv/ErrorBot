@@ -13,9 +13,6 @@ public class HelloUser {
 
     @Column(name ="com_comando")
     private  String comando  = "OC";
-
-
-
     public HelloUser(String comando) {
         this.comando = comando;
     }
