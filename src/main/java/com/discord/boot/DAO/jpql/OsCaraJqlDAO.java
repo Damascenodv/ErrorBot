@@ -18,7 +18,7 @@ public class OsCaraJqlDAO extends BaseRepositorioJPQl implements RepositorioJpql
         return null;
     }
     @Override
-    public OsCara getAllbyPK(Integer codigo) {
+    public OsCara getAllbyPK(OsCara codigo) {
         return null;
     }
     @Override

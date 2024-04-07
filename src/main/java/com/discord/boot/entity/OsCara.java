@@ -14,6 +14,7 @@ public class OsCara {
         message.getAuthor().ifPresent(user ->this.userTag = user.getTag());
 
     }
+    public  OsCara(){}
     @Id
     @Column(name = "oc_codigo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +35,12 @@ public class OsCara {
     @ManyToMany(mappedBy = "osCara")
     public List<Highlights> highlights;
 
+
+    public Integer getOcCodigo() {
+        return ocCodigo;
+    }
+
+    public void setOcCodigo(Integer ocCodigo) {
+        this.ocCodigo = ocCodigo;
+    }
 }

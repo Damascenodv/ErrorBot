@@ -5,7 +5,7 @@ import java.util.List;
 public interface RepositorioJpql<T> {
     public List<T> getAll();
 
-    public T getAllbyPK(Integer codigo);
+    public T getAllbyPK(T obj);
 
     public T insert(T obj) throws Exception;
 
