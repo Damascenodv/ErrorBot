@@ -30,6 +30,8 @@ public class MessageCreateService extends MessageListener implements EventListne
             }if (commnadEvent.equals(CommandosGenericos.atualizaUsuario)){
 
                 return processAtualizaUsuario(event.getMessage());
+            }if(commnadEvent.equals("Calcular")){
+                return processCalculo(event.getMessage());
             }
             return Mono.empty();
 
