@@ -115,7 +115,13 @@ public abstract class MessageListener {
     }
 
     private Mono<Void> calcularDosimetira(Message eventMessage) {
-        String resultado = "";
+        String[] resultado = eventMessage.getContent().split("/");
+        int casoCodigo;
+        Double baseLegal;
+             casoCodigo = Integer.parseInt(resultado[1]);
+             baseLegal = Double.parseDouble(resultado[2]);
+        
+           
         return Mono.just(eventMessage).filter(message -> {
             final Boolean isNotBot = message.getAuthor()
                     .map(user -> !user.isBot())
@@ -126,7 +132,7 @@ public abstract class MessageListener {
             }
             return isNotBot;
         }).flatMap(Message::getChannel)
-                .flatMap(channel -> channel.createMessage(String.format(" '%s' Atualizado com sucesso", realizarConsulta(new ConsultaRequest(2,0)))))
+                .flatMap(channel -> channel.createMessage(String.format(" '%s' Atualizado com sucesso", realizarConsulta(new ConsultaRequest(casoCodigo,baseLegal)))))
                 .then();
 
     }
